@@ -27,7 +27,7 @@ return {
           complete_function_calls = true,
           typescript = {
             preferences = {
-              importModuleSpecifierPreference = "relative",
+              importModuleSpecifier = "relative",
               importModuleSpecifierEnding = "minimal",
             },
             format = {
