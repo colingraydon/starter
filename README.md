@@ -7,6 +7,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 - Next error `[e`
 - Move file (tab on the tree) then m
+- LazyGit push: P
 
 You will need to pass various commands through the terminal to get started. This is a simple guide to get you started.
 

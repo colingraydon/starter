@@ -26,9 +26,6 @@ return {
           -- format on save
           complete_function_calls = true,
           vtsls = {
-            preferences = {
-              importModuleSpecifierPreference = "relative",
-            },
             enableMoveToFileCodeAction = true,
             autoUseWorkspaceTsdk = true,
             experimental = {
@@ -39,6 +36,25 @@ return {
             },
           },
           typescript = {
+            preferences = {
+              importModuleSpecifierPreference = "relative",
+              importModuleSpecifierEnding = "minimal",
+            },
+            format = {
+              organizeImportsOnSave = true,
+            },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+            },
+          },
+          preferences = {
             format = {
               organizeImportsOnSave = true,
             },
