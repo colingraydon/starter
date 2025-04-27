@@ -19,6 +19,7 @@ return {
         debug = true,
         window = {
           layout = "float",
+          zindex = 50, -- Make sure it's above other UI elements
         },
       })
 
