@@ -25,16 +25,6 @@ return {
         settings = {
           -- format on save
           complete_function_calls = true,
-          vtsls = {
-            enableMoveToFileCodeAction = true,
-            autoUseWorkspaceTsdk = true,
-            experimental = {
-              maxInlayHintLength = 30,
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
           typescript = {
             preferences = {
               importModuleSpecifierPreference = "relative",
@@ -43,6 +33,7 @@ return {
             format = {
               organizeImportsOnSave = true,
             },
+            updateImportsOnFileMove = { enabled = "always" },
             suggest = {
               completeFunctionCalls = true,
             },
@@ -52,6 +43,29 @@ return {
               parameterNames = { enabled = "literals" },
               parameterTypes = { enabled = true },
               propertyDeclarationTypes = { enabled = true },
+            },
+          },
+          javascript = {
+            preferences = {
+              importModuleSpecifierPreference = "relative",
+              importModuleSpecifierEnding = "minimal",
+            },
+            format = {
+              organizeImportsOnSave = true,
+            },
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+          },
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              maxInlayHintLength = 30,
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
             },
           },
           preferences = {
