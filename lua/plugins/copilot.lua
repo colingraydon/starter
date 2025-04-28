@@ -1,4 +1,3 @@
--- In your LazyVim plugins file (like lua/plugins/copilot.lua)
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -16,16 +15,35 @@ return {
             accept_line = false,
             next = "<M-]>",
             prev = "<M-[>",
-            dismiss = "<C-]>",
+            dismiss = "<D-g>", -- This directly maps the dismiss action
           },
-          -- This enables showing the full suggestion as ghost text
-          show_full = true, -- Show the full suggestion, not just the current word
+          show_full = true,
         },
         panel = { enabled = false },
-        filetypes = {
-          markdown = true,
-          help = true,
-        },
+      })
+
+      -- You can add additional customization for dismissed suggestions
+      local last_dismissed_line = nil
+
+      -- Track dismissed suggestions
+      local group = vim.api.nvim_create_augroup("CopilotCustom", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "CopilotSuggestionDismissed",
+        group = group,
+        callback = function()
+          last_dismissed_line = vim.api.nvim_win_get_cursor(0)[1]
+        end,
+      })
+
+      -- Reset tracking when cursor moves
+      vim.api.nvim_create_autocmd("CursorMovedI", {
+        group = group,
+        callback = function()
+          local current_line = vim.api.nvim_win_get_cursor(0)[1]
+          if last_dismissed_line and current_line ~= last_dismissed_line then
+            last_dismissed_line = nil
+          end
+        end,
       })
     end,
   },

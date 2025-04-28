@@ -16,30 +16,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true -- Convert tabs to spaces
   end,
 })
-
--- Auto-continue docblock comments on Enter
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-  callback = function()
-    vim.keymap.set("i", "<CR>", function()
-      -- Get current line and cursor position
-      local line = vim.api.nvim_get_current_line()
-      local col = vim.api.nvim_win_get_cursor(0)[2] + 1
-
-      -- Check if we're inside a /** */ block
-      if line:match("^%s*/%*%*") or line:match("^%s*%*") then
-        -- If at end of line, add new * line
-        if col >= #line then
-          return "<CR> * "
-        -- If in middle of line, break with * aligned
-        else
-          local indent = line:match("^(%s*)") or ""
-          return "<CR>" .. indent .. " * "
-        end
-      end
-
-      -- Default Enter behavior
-      return "<CR>"
-    end, { expr = true, buffer = true })
-  end,
-})
